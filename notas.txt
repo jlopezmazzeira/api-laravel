@@ -1,0 +1,18 @@
+Al momento de instalar laravel, puede ser que nos ocurran algunos problemas con algunas dependencias,
+para solucionar esto debemos hacer lo siguiente:
+  1. sudo apt-get -y install gcc make autoconf libc-dev pkg-config
+  2. sudo apt-get -y install php7.2-dev
+  3. sudo apt-get -y install libmcrypt-dev
+  4. sudo pecl install mcrypt-1.0.1
+  5. Configurar tu php.ini y añadir la siguiente extensión: extension=mcrypt.so
+  6. Debemos reiniciar el servidor
+  7. Luego nos vamos al directorio del proyecto y ejecutamos composer install
+
+Comandos Usados:
+php artisan make:model Fabricante
+sudo php artisan make:migration fabricantes_migration --create=fabricantes
+php artisan migrate:install
+php artisan migrate
+composer require fzaninotto/faker --dev
+composer dump-autoload
+php artisan db:seed
