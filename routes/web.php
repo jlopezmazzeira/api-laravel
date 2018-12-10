@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
+
+Route::get('/fabricantes','FabricanteController@index');
+Route::get('/fabricantes/{id}','FabricanteController@show');
+Route::get('/vehiculos','VehiculoController@index');
+Route::get('/vehiculos/{id}','VehiculoController@show');
+Route::get('/fabricantes/{fabricante_id}/vehiculos','FabricanteVehiculoController@index');

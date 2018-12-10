@@ -16,3 +16,8 @@ php artisan migrate
 composer require fzaninotto/faker --dev
 composer dump-autoload
 php artisan db:seed
+
+php artisan make:controller PhotoController --resource
+php artisan route:list
+
+php artisan serve
