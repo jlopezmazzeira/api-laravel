@@ -21,3 +21,43 @@ php artisan make:controller PhotoController --resource
 php artisan route:list
 
 php artisan serve
+
+//Configurar un server de ubuntu
+1. Si el usuario root no tiene pass colocamos el comando passwd.
+2. adduser nombre_usuario
+3. sudo adduser nombre_usuario sudo //para dar permisos de administrador
+4. sudo apt-get update
+5. sudo apt-get install nginx
+6. cd etc/nginx/sites-available/
+7. sudo nano default
+8. cambiamos root por /var/www: y agregamos el index.php
+    8.1 server_name dirección IP;
+    8.2 return 301 $schema://dominio$request_uri;
+9. sudo nano nginx.conf
+10. debemos descomentar server_token off
+11. sudo service nginx reload
+12. sudo apt-get install php5-fpm
+13. cd /etc/php5/fpm
+14. sudo nano php.ini
+  14.1 cgi.fix
+  14.2 cgi.fix_pathinfo igualarlo a 0 y descomentar
+15.sudo nano pool.d/www.conf
+  15.1 listen = /var/run/php5-fpm.sock
+16. sudo service php5-fpm restart
+17. cd etc/nginx/sites-available/
+  17.1 descomentar las lineas de php
+18. sudo apt-get install mysql-server php5-mysql
+19. sudo mysql_install_db
+20. cd /usr/bin/
+21. sudo ./mysql_secure_installation
+
+//Configurar laravel en produccción
+1. sudo etc/nginx/sites-available/default
+2. try_files se elimina el 404 y se coloca el /index.php?$query_string;
+3. sudo service nginx reload
+4. sudo apt-get install php5-mcrypt
+5. sudo php5enmod mcrypt
+6. sudo service php5-fpm restart
+7. sudo etc/nginx/sites-available/default
+8. add_header Access-Control-Allow-Origin *;
+9. sudo service nginx reload

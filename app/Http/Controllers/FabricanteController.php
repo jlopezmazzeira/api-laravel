@@ -18,7 +18,15 @@ class FabricanteController extends Controller
      */
     public function index()
     {
-        return response()->json(['data' => Fabricante::all()],200);
+        $elements = 2;
+        $fabricantes = Fabricante::simplePaginate($elements);
+        $data = [
+          'next' => $fabricantes->nextPageUrl(),
+          'previous' => $fabricantes->previousPageUrl(),
+          'data' => $fabricantes->items()
+        ];
+
+        return response()->json($data,200);
     }
 
     /**

@@ -15,10 +15,12 @@
     return view('welcome');
 });*/
 
-Route::get('/fabricantes','FabricanteController@index');
-Route::get('/fabricantes/{id}','FabricanteController@show');
-Route::post('/fabricante','FabricanteController@store');
-Route::post('/create-vehiculo/{id}','FabricanteVehiculoController@store');
-Route::get('/vehiculos','VehiculoController@index');
-Route::get('/vehiculos/{id}','VehiculoController@show');
-Route::get('/fabricantes/{fabricante_id}/vehiculos','FabricanteVehiculoController@index');
+Route::prefix('api/v1.1')->group(function () {
+  Route::get('/fabricantes','FabricanteController@index');
+  Route::get('/fabricantes/{id}','FabricanteController@show');
+  Route::post('/fabricante','FabricanteController@store');
+  Route::post('/create-vehiculo/{id}','FabricanteVehiculoController@store');
+  Route::get('/vehiculos','VehiculoController@index');
+  Route::get('/vehiculos/{id}','VehiculoController@show');
+  Route::get('/fabricantes/{fabricante_id}/vehiculos','FabricanteVehiculoController@index');
+});
